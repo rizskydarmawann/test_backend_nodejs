@@ -18,13 +18,29 @@ const getAllProducts = async (req, res) => {
 const createNewProducts = async (req, res) => {
     const { body } = req;
 
-    if (!body.price || !body.name) {
+    // Validasi nama produk
+    if (!body.name) {
         return res.status(400).json({
-            message: 'Anda mengirimkan data yang salah',
+            message: 'Nama produk harus diisi',
             data: null,
         })
     }
 
+    // Validasi harga produk
+    if (!body.price) {
+        return res.status(400).json({
+            message: 'Harga produk harus diisi',
+            data: null,
+        })
+    }
+
+    // Validasi stok produk
+    if (!body.stock) {
+        return res.status(400).json({
+            message: 'Stok produk harus diisi',
+            data: null,
+        })
+    }
     try {
         await ProdukModel.createNewProducts(body);
         res.status(201).json({

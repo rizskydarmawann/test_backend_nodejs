@@ -7,15 +7,15 @@ const getAllProducts = () => {
 }
 
 const createNewProducts = (body) => {
-    const SQLQuery = `  INSERT INTO produk (name, price) 
-                        VALUES ('${body.name}', '${body.price}')`;
+    const SQLQuery = `  INSERT INTO produk (name, price, stock) 
+                        VALUES ('${body.name}', '${body.price}', '${body.stock}')`;
 
     return dbPool.execute(SQLQuery);
 }
 
 const updateProducts = (body, idProducts) => {
     const SQLQuery = `  UPDATE produk 
-                        SET name='${body.name}', price='${body.price}' 
+                        SET name='${body.name}', price='${body.price}' ,stock='${body.stock}'
                         WHERE id=${idProducts}`;
 
     return dbPool.execute(SQLQuery);

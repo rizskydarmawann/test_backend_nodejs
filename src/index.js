@@ -2,6 +2,8 @@ const express = require('express')
 const middlewareLogRequest = require('./middleware/logs');
 const productsRoutes = require('./routes/produk.js');
 
+const usersController = require('./controller/users.js')
+
 const app = express();
 
 app.use(middlewareLogRequest);
@@ -9,6 +11,9 @@ app.use(express.json());
 
 
 app.use('/products', productsRoutes);
+
+app.use('/register', usersController.registerUsers);
+app.use('/login', usersController.loginUsers);
 
 
 
